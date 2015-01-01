@@ -8,7 +8,7 @@ Veewee::Definition.declare({
   :cpu_count   => 2,
   :memory_size => '1024',
   :disk_size   => '20280',
-  :disk_format => 'VDI',
+  :disk_format => 'qcow2',
   :hostiocache => 'off',
   :os_type_id  => 'Gentoo_64',
   :iso_file    => template_build[3],
@@ -17,14 +17,7 @@ Veewee::Definition.declare({
   :boot_wait => "10",
   :boot_cmd_sequence => [
     '<Wait>' * 2,
-    'gentoo-nofb<Enter>',
-    '<Wait>' * 30,
-    '<Enter>',
-    '<Wait>' * 20,
-    'passwd<Enter><Wait><Wait>',
-    'vagrant<Enter><Wait>',
-    'vagrant<Enter><Wait>',
-    '/etc/init.d/sshd start<Enter>'
+    'gentoo-nofb dosshd passwd=vagrant nodmraid nofirewire nogpm nokeymap nosound<Enter>'
   ],
   :kickstart_port    => '7122',
   :kickstart_timeout => 300,
